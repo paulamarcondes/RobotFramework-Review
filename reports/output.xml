@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.2.2 (Python 3.13.3 on win32)" generated="2025-05-08T23:40:22.444339" rpa="false" schemaversion="5">
+<suite id="s1" name="Builtin" source="C:\Projects\RobotAPITesting\tests\builtin.robot">
+<test id="s1-t1" name="Logging a message" line="10">
+<kw name="Log My First Message" owner="keywords">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-08T23:40:22.465761" level="INFO">Hello, world!</msg>
+<arg>Hello, world!</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.465675" elapsed="0.000127"/>
+</kw>
+<status status="PASS" start="2025-05-08T23:40:22.465371" elapsed="0.000484"/>
+</kw>
+<status status="PASS" start="2025-05-08T23:40:22.464912" elapsed="0.001170"/>
+</test>
+<test id="s1-t2" name="Comparing responses" line="13">
+<kw name="Both Responses Have to be Equal" owner="keywords">
+<kw name="Should Be Equal" owner="BuiltIn">
+<arg>Banana</arg>
+<arg>Banana</arg>
+<doc>Fails if the given objects are unequal.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.467012" elapsed="0.000097"/>
+</kw>
+<status status="PASS" start="2025-05-08T23:40:22.466878" elapsed="0.000267"/>
+</kw>
+<status status="PASS" start="2025-05-08T23:40:22.466612" elapsed="0.000733"/>
+</test>
+<test id="s1-t3" name="Comparing conditions" line="16">
+<kw name="The Condition Has to be True" owner="keywords">
+<kw name="Should Be True" owner="BuiltIn">
+<arg>${5} &gt; ${3}</arg>
+<doc>Fails if the given condition is not true.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.468007" elapsed="0.000382"/>
+</kw>
+<status status="PASS" start="2025-05-08T23:40:22.467890" elapsed="0.000534"/>
+</kw>
+<status status="PASS" start="2025-05-08T23:40:22.467716" elapsed="0.000835"/>
+</test>
+<test id="s1-t4" name="Verifying item length" line="19">
+<kw name="The Item Must Have X Length" owner="keywords">
+<kw name="Length Should Be" owner="BuiltIn">
+<msg time="2025-05-08T23:40:22.469104" level="INFO">Length is 4.</msg>
+<arg>${LIST_COLORS}[1]</arg>
+<arg>4</arg>
+<doc>Verifies that the length of the given item is correct.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.468991" elapsed="0.000141"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-08T23:40:22.469259" level="INFO">The color is Pink and it has 4 letters.</msg>
+<arg>The color is ${LIST_COLORS}[1] and it has 4 letters.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.469189" elapsed="0.000090"/>
+</kw>
+<status status="PASS" start="2025-05-08T23:40:22.468880" elapsed="0.000425"/>
+</kw>
+<status status="PASS" start="2025-05-08T23:40:22.468707" elapsed="0.000720"/>
+</test>
+<test id="s1-t5" name="Converting something to a number" line="22">
+<kw name="The Value is Converted to a Number" owner="keywords">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-08T23:40:22.469953" level="INFO">Before converting, White was the color white.</msg>
+<arg>Before converting, ${LIST_COLORS}[0] was the color white.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.469878" elapsed="0.000101"/>
+</kw>
+<kw name="Convert To Number" owner="BuiltIn">
+<msg time="2025-05-08T23:40:22.470133" level="INFO">${LIST_COLORS}[0] = 5.0</msg>
+<var>${LIST_COLORS}[0]</var>
+<arg>5</arg>
+<doc>Converts the given item to a floating point number.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.470033" elapsed="0.000113"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-08T23:40:22.470259" level="INFO">Now, we have the number 5.0.</msg>
+<arg>Now, we have the number ${LIST_COLORS}[0].</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.470198" elapsed="0.000080"/>
+</kw>
+<status status="PASS" start="2025-05-08T23:40:22.469753" elapsed="0.000553"/>
+</kw>
+<status status="PASS" start="2025-05-08T23:40:22.469579" elapsed="0.000846"/>
+</test>
+<test id="s1-t6" name="Assigning a value to a variable" line="25">
+<kw name="The Variable Now is" owner="keywords">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-08T23:40:22.470934" level="INFO">Before setting the variable, Pink was the color pink.</msg>
+<arg>Before setting the variable, ${LIST_COLORS}[1] was the color pink.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.470862" elapsed="0.000098"/>
+</kw>
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-05-08T23:40:22.471111" level="INFO">${LIST_COLORS}[1] = Panda</msg>
+<var>${LIST_COLORS}[1]</var>
+<arg>${LIST_ANIMALS}[0]</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.471017" elapsed="0.000108"/>
+</kw>
+<kw name="Log Many" owner="BuiltIn">
+<msg time="2025-05-08T23:40:22.471233" level="INFO">5.0</msg>
+<msg time="2025-05-08T23:40:22.471248" level="INFO">Panda</msg>
+<msg time="2025-05-08T23:40:22.471258" level="INFO">Orange</msg>
+<msg time="2025-05-08T23:40:22.471267" level="INFO">Black</msg>
+<msg time="2025-05-08T23:40:22.471275" level="INFO">Red</msg>
+<arg>@{LIST_COLORS}</arg>
+<doc>Logs the given messages as separate entries using the INFO level.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.471176" elapsed="0.000112"/>
+</kw>
+<status status="PASS" start="2025-05-08T23:40:22.470749" elapsed="0.000565"/>
+</kw>
+<status status="PASS" start="2025-05-08T23:40:22.470581" elapsed="0.000853"/>
+</test>
+<test id="s1-t7" name="Checking if list has an item" line="28">
+<kw name="The List Must Have X" owner="keywords">
+<kw name="Should Contain" owner="BuiltIn">
+<arg>${LIST_COLORS}[4]</arg>
+<arg>R</arg>
+<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.472570" elapsed="0.000109"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-08T23:40:22.472838" level="INFO">The color Red has the letter R!</msg>
+<arg>The color ${LIST_COLORS}[4] has the letter R!</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.472760" elapsed="0.000105"/>
+</kw>
+<status status="PASS" start="2025-05-08T23:40:22.472348" elapsed="0.000548"/>
+</kw>
+<status status="PASS" start="2025-05-08T23:40:22.471844" elapsed="0.001491"/>
+</test>
+<test id="s1-t8" name="Executing a keyword only if condition is met" line="31">
+<kw name="Run the Keyword Only If" owner="keywords">
+<kw name="Set Variable" owner="BuiltIn">
+<msg time="2025-05-08T23:40:22.474582" level="INFO">${random_number} = 3</msg>
+<var>${random_number}</var>
+<arg>3</arg>
+<doc>Returns the given values which can then be assigned to a variables.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.474500" elapsed="0.000099"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-08T23:40:22.474876" level="INFO">Number is less than 5.</msg>
+<arg>Number is less than 5.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.474822" elapsed="0.000079"/>
+</kw>
+<arg>${random_number} &lt; 5</arg>
+<arg>Log</arg>
+<arg>Number is less than 5.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.474665" elapsed="0.000263"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>${random_number} &gt; 5</arg>
+<arg>Log</arg>
+<arg>Number is more than 5.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.475135" elapsed="0.000180"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>${random_number} == 5</arg>
+<arg>Log</arg>
+<arg>Number is 5.</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.475544" elapsed="0.000176"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-08T23:40:22.476149" level="INFO">The number is 3.</msg>
+<arg>The number is ${random_number}.</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.475811" elapsed="0.000371"/>
+</kw>
+<status status="PASS" start="2025-05-08T23:40:22.474352" elapsed="0.001901"/>
+</kw>
+<status status="PASS" start="2025-05-08T23:40:22.473963" elapsed="0.002466"/>
+</test>
+<doc>This file explores the most used keywords from the Robot Framework BuiltIn Library.</doc>
+<status status="PASS" start="2025-05-08T23:40:22.445253" elapsed="0.031770"/>
+</suite>
+<statistics>
+<total>
+<stat pass="8" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat name="Builtin" id="s1" pass="8" fail="0" skip="0">Builtin</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
