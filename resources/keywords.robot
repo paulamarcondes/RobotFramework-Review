@@ -1,7 +1,8 @@
 *** Settings ***
-Documentation    This file lists all the keywords from the test files.
+Documentation    This file contains all custom keywords for the tests. Despite its size, this approach was chosen to consolidate all automation actions in one location for better organization.
 Resource         ../resources/variables.robot
 Library          Collections
+Library          RequestsLibrary
 
 
 
@@ -19,15 +20,15 @@ The Condition Has to be True
 
 The Item Must Have X Length
     Length Should Be    ${LIST_COLORS}[1]    4
-    Log    The color is ${LIST_COLORS}[1] and it has 4 letters.
+    Log    The color is ${LIST_COLORS}[1] and it has 4 letters
 
 The Value is Converted to a Number
     Log    Before converting, ${LIST_COLORS}[0] was the color white.
     ${LIST_COLORS}[0]    Convert To Number    5
-    Log    Now, we have the number ${LIST_COLORS}[0].
+    Log    Now, we have the number ${LIST_COLORS}[0]
 
 The Variable Now is
-    Log    Before setting the variable, ${LIST_COLORS}[1] was the color pink.
+    Log    Before setting the variable, ${LIST_COLORS}[1] was the color pink
     ${LIST_COLORS}[1]=    Set Variable    ${LIST_ANIMALS}[0]
     Log Many    @{LIST_COLORS}
 
@@ -40,7 +41,7 @@ Run the Keyword Only If
     Run Keyword If    ${random_number} < 5    Log    Number is less than 5.
     Run Keyword If    ${random_number} > 5    Log    Number is more than 5.
     Run Keyword If    ${random_number} == 5   Log    Number is 5.
-    Log    The number is ${random_number}.
+    Log    The number is ${random_number}
 
 Create a List of Elements
     @{LIST_DOGS}    Create List    Dachshund    Dalmatian    Yorkshire    Poodle    German Shepherd
@@ -104,3 +105,102 @@ Verify If List Has Item
 Verify If Dictionary Has Item
     Dictionary Should Contain Key    ${DIC_MOVIES}    newest
     Dictionary Should Not Contain Value    ${DIC_MOVIES}    Armageddon
+
+
+
+### --- Requests Library --- ###
+Create A Session
+    Create Session    firedispatch_api    ${BASE_URL}
+    Log    Session created successfully
+
+
+Get All Dispatches
+    ${response}=    GET On Session    firedispatch_api    /api/dispatches
+    Log    The response object from this call is: ${response}
+
+Get A Specific Dispatch
+    ${response}=    GET On Session    firedispatch_api    /api/dispatch/1
+    Log    The response object from this call is: ${response}
+
+Post A Dispatch With Dictionary
+    &{dispatch_body}    Create Dictionary    incident_id=333    location=Downtown    type=Fire    priority=High
+    ${response}=    POST On Session    firedispatch_api    /api/dispatch    json=${dispatch_body}
+    Log    Status Code: ${response.status_code}
+    Log    Response Body: ${response.json()}
+
+Post A Dispatch With Variable
+    ${response}=    POST On Session    firedispatch_api    /api/dispatch    json=${DISPATCH_BODY}
+    Log    Reason: ${response.reason}
+    Log    Response Body: ${response.json()}
+
+# Post Random Dispatch
+
+
+Update Full Dispatch
+    ${response}=    GET On Session    firedispatch_api    /api/dispatch/1
+    Log    ${response.json()}
+
+    &{updated_dispatch}    Create Dictionary    incident_id=311    location=Uptown    type=Fire    priority=Medium
+    ${response}=    PUT On Session    firedispatch_api    /api/dispatch/1    json=${updated_dispatch}
+    Log    Status Code: ${response.status_code}
+    Log    Response Body: ${response.json()}
+
+Update Partial Dispatch
+    ${response}=    GET On Session    firedispatch_api    /api/dispatch/2
+    Log    ${response.json()}
+
+    &{updated_dispatch}    Create Dictionary    incident_id=999
+    ${response}=    PUT On Session    firedispatch_api    /api/dispatch/2    json=${updated_dispatch}
+    Log    Status Code: ${response.status_code}
+    Log    Response Body: ${response.json()}
+
+Delete A Dispatch
+    ${response}=    DELETE On Session    firedispatch_api    /api/dispatch/8
+    Log    Status Code: ${response.status_code}
+    Log    Response Body: ${response.json()}
+
+Get Status Code With Response Object
+    ${response}=    GET On Session    firedispatch_api    /api/dispatches
+    Log     The status code from this call is: ${response.status_code}
+
+Get Status Code With Keyword Argument
+    ${response}=    GET On Session    firedispatch_api    /api/dispatches    expected_status=200
+
+Get Status Reason
+    ${response}=    GET On Session    firedispatch_api    /api/dispatches
+    Log     The status reason from this call is: ${response.reason}
+
+Get Response Body
+    ${response}=    GET On Session    firedispatch_api    /api/dispatches
+    Log    The response body from this call is: ${response.json()}
+
+Get A Dispatch And Confirm Status
+    ${response}=    GET On Session    firedispatch_api    /api/dispatch/1
+    Should Be Equal As Numbers    ${response.status_code}    200
+    Log    ${response.status_code} is indeed '200'
+
+Post A Dispatch And Confirm Status
+    &{dispatch_body}    Create Dictionary    incident_id=542    location=Uptown    type=Flood    priority=Medium
+    ${response}=    POST On Session    firedispatch_api    /api/dispatch    json=${dispatch_body}
+    Status Should Be    201
+    Log    ${response.json()}
+
+Get A Dispatch And Confirm Reason
+    ${response}=    GET On Session    firedispatch_api    /api/dispatches
+    Should Be Equal As Strings    ${response.reason}    OK
+    Log    ${response.reason} is indeed 'OK'
+
+Get A Dispatch And Confirm Body
+    ${response}=    GET On Session    firedispatch_api    /api/dispatch/1
+    Should Contain    ${response.json()}    data
+    Log    ${response.json()} indeed contains 'data'
+
+Get A Dispatch And Confirm Body as Dictionary
+    ${response}=    GET On Session    firedispatch_api    /api/dispatch/1
+    Dictionary Should Contain Key    ${response.json()["data"]}    priority
+    Log    ${response.json()["data"]} contains 'priority'
+
+Delete A Dispatch And Confirm If Successful
+    ${response}=    DELETE On Session    firedispatch_api    /api/dispatch/5
+    Request Should Be Successful    ${response}
+    Log    ${response.json()}

@@ -10,3 +10,6 @@ Documentation    This file lists all the variables from the test files.
 
 &{DIC_MOVIES}      best=Up    worst=Peter Pan    newest=Stitch    oldest=Snow White
 &{DIC_CITIES}      famous=Paris    fun=Las Vegas    beautiful=Amsterdam
+
+${BASE_URL}        http://localhost:5000
+&{DISPATCH_BODY}   incident_id=123    location=New York    type=Fire    priority=Low

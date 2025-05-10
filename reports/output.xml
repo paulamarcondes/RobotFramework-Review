@@ -1,306 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.2.2 (Python 3.13.3 on win32)" generated="2025-05-09T19:57:18.236725" rpa="false" schemaversion="5">
-<suite id="s1" name="1.Tests Builtin" source="C:\Projects\RobotReview\tests\1.tests_builtin.robot">
-<test id="s1-t1" name="1.1 Logging a message" line="8">
-<kw name="Log My First Message" owner="keywords">
+<robot generator="Robot 7.2.2 (Python 3.13.3 on win32)" generated="2025-05-10T17:16:31.596454" rpa="false" schemaversion="5">
+<suite id="s1" name="4.Tests Requests" source="C:\Projects\RobotReview\tests\4.tests_requests.robot">
+<kw name="Create A Session" owner="keywords" type="SETUP">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2025-05-10T17:16:31.842600" level="INFO">Creating Session using : alias=firedispatch_api, url=http://localhost:5000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>firedispatch_api</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2025-05-10T17:16:31.842484" elapsed="0.000245"/>
+</kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.265079" level="INFO">Hello, world!</msg>
-<arg>Hello, world!</arg>
+<msg time="2025-05-10T17:16:31.842871" level="INFO">Session created successfully</msg>
+<arg>Session created successfully</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.264984" elapsed="0.000143"/>
+<status status="PASS" start="2025-05-10T17:16:31.842811" elapsed="0.000087"/>
 </kw>
-<status status="PASS" start="2025-05-09T19:57:18.264632" elapsed="0.000555"/>
+<status status="PASS" start="2025-05-10T17:16:31.842169" elapsed="0.000768"/>
 </kw>
-<status status="PASS" start="2025-05-09T19:57:18.264100" elapsed="0.001229"/>
+<test id="s1-t1" name="3.6 Confirming responses" line="34">
+<kw name="Delete A Dispatch And Confirm If Successful" owner="keywords">
+<kw name="DELETE On Session" owner="RequestsLibrary">
+<msg time="2025-05-10T17:16:33.868956" level="INFO">DELETE Request : url=http://localhost:5000/api/dispatch/5 
+ path_url=/api/dispatch/5 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
+ body=None 
+ </msg>
+<msg time="2025-05-10T17:16:33.869060" level="INFO">DELETE Response : url=http://localhost:5000/api/dispatch/5 
+ status=200, reason=OK 
+ headers={'Server': 'Werkzeug/3.1.3 Python/3.13.3', 'Date': 'Sat, 10 May 2025 20:16:33 GMT', 'Content-Type': 'application/json', 'Content-Length': '38', 'Connection': 'close'} 
+ body={
+  "message": "Dispatch 5 deleted"
+}
+ 
+ </msg>
+<msg time="2025-05-10T17:16:33.869254" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>firedispatch_api</arg>
+<arg>/api/dispatch/5</arg>
+<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2025-05-10T17:16:31.843766" elapsed="2.025512"/>
+</kw>
+<kw name="Request Should Be Successful" owner="RequestsLibrary">
+<arg>${response}</arg>
+<doc>Fails if response status code is a client or server error (4xx, 5xx).</doc>
+<status status="PASS" start="2025-05-10T17:16:33.869387" elapsed="0.000167"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-10T17:16:33.870007" level="INFO">{'message': 'Dispatch 5 deleted'}</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-10T17:16:33.869620" elapsed="0.000424"/>
+</kw>
+<status status="PASS" start="2025-05-10T17:16:31.843408" elapsed="2.026687"/>
+</kw>
+<status status="PASS" start="2025-05-10T17:16:31.842971" elapsed="2.027387"/>
 </test>
-<test id="s1-t2" name="1.2 Comparing responses" line="11">
-<kw name="Both Responses Have to be Equal" owner="keywords">
-<kw name="Should Be Equal" owner="BuiltIn">
-<arg>Banana</arg>
-<arg>Banana</arg>
-<doc>Fails if the given objects are unequal.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.266182" elapsed="0.000104"/>
+<kw name="Delete All Sessions" owner="RequestsLibrary" type="TEARDOWN">
+<msg time="2025-05-10T17:16:33.871091" level="INFO">Deleting All Sessions</msg>
+<doc>Removes all the session objects</doc>
+<status status="PASS" start="2025-05-10T17:16:33.871013" elapsed="0.000139"/>
 </kw>
-<status status="PASS" start="2025-05-09T19:57:18.266025" elapsed="0.000306"/>
-</kw>
-<status status="PASS" start="2025-05-09T19:57:18.265773" elapsed="0.000674"/>
-</test>
-<test id="s1-t3" name="1.3 Comparing conditions" line="14">
-<kw name="The Condition Has to be True" owner="keywords">
-<kw name="Should Be True" owner="BuiltIn">
-<arg>${5} &gt; ${3}</arg>
-<doc>Fails if the given condition is not true.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.267197" elapsed="0.000389"/>
-</kw>
-<status status="PASS" start="2025-05-09T19:57:18.267060" elapsed="0.000573"/>
-</kw>
-<status status="PASS" start="2025-05-09T19:57:18.266742" elapsed="0.001011"/>
-</test>
-<test id="s1-t4" name="1.4 Verifying item length" line="17">
-<kw name="The Item Must Have X Length" owner="keywords">
-<kw name="Length Should Be" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.268620" level="INFO">Length is 4.</msg>
-<arg>${LIST_COLORS}[1]</arg>
-<arg>4</arg>
-<doc>Verifies that the length of the given item is correct.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.268512" elapsed="0.000142"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.268803" level="INFO">The color is Pink and it has 4 letters.</msg>
-<arg>The color is ${LIST_COLORS}[1] and it has 4 letters.</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.268721" elapsed="0.000108"/>
-</kw>
-<status status="PASS" start="2025-05-09T19:57:18.268373" elapsed="0.000489"/>
-</kw>
-<status status="PASS" start="2025-05-09T19:57:18.268144" elapsed="0.000824"/>
-</test>
-<test id="s1-t5" name="1.5 Converting something to a number" line="20">
-<kw name="The Value is Converted to a Number" owner="keywords">
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.271011" level="INFO">Before converting, White was the color white.</msg>
-<arg>Before converting, ${LIST_COLORS}[0] was the color white.</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.270871" elapsed="0.000192"/>
-</kw>
-<kw name="Convert To Number" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.271773" level="INFO">${LIST_COLORS}[0] = 5.0</msg>
-<var>${LIST_COLORS}[0]</var>
-<arg>5</arg>
-<doc>Converts the given item to a floating point number.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.271172" elapsed="0.000632"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.272300" level="INFO">Now, we have the number 5.0.</msg>
-<arg>Now, we have the number ${LIST_COLORS}[0].</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.272143" elapsed="0.000204"/>
-</kw>
-<status status="PASS" start="2025-05-09T19:57:18.269795" elapsed="0.002612"/>
-</kw>
-<status status="PASS" start="2025-05-09T19:57:18.269240" elapsed="0.003342"/>
-</test>
-<test id="s1-t6" name="1.6 Assigning a value to a variable" line="23">
-<kw name="The Variable Now is" owner="keywords">
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.274030" level="INFO">Before setting the variable, Pink was the color pink.</msg>
-<arg>Before setting the variable, ${LIST_COLORS}[1] was the color pink.</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.273908" elapsed="0.000164"/>
-</kw>
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.274333" level="INFO">${LIST_COLORS}[1] = Panda</msg>
-<var>${LIST_COLORS}[1]</var>
-<arg>${LIST_ANIMALS}[0]</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.274165" elapsed="0.000191"/>
-</kw>
-<kw name="Log Many" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.276577" level="INFO">5.0</msg>
-<msg time="2025-05-09T19:57:18.276623" level="INFO">Panda</msg>
-<msg time="2025-05-09T19:57:18.276732" level="INFO">Orange</msg>
-<msg time="2025-05-09T19:57:18.276753" level="INFO">Black</msg>
-<msg time="2025-05-09T19:57:18.276768" level="INFO">Red</msg>
-<arg>@{LIST_COLORS}</arg>
-<doc>Logs the given messages as separate entries using the INFO level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.276241" elapsed="0.000557"/>
-</kw>
-<status status="PASS" start="2025-05-09T19:57:18.273707" elapsed="0.003147"/>
-</kw>
-<status status="PASS" start="2025-05-09T19:57:18.273347" elapsed="0.003690"/>
-</test>
-<test id="s1-t7" name="1.7 Checking if list has an item" line="26">
-<kw name="The List Must Have X" owner="keywords">
-<kw name="Should Contain" owner="BuiltIn">
-<arg>${LIST_COLORS}[4]</arg>
-<arg>R</arg>
-<doc>Fails if ``container`` does not contain ``item`` one or more times.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.278248" elapsed="0.000201"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.278663" level="INFO">The color Red has the letter R!</msg>
-<arg>The color ${LIST_COLORS}[4] has the letter R!</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.278552" elapsed="0.000140"/>
-</kw>
-<status status="PASS" start="2025-05-09T19:57:18.277726" elapsed="0.001003"/>
-</kw>
-<status status="PASS" start="2025-05-09T19:57:18.277346" elapsed="0.001513"/>
-</test>
-<test id="s1-t8" name="1.8 Executing a keyword only if condition is met" line="29">
-<kw name="Run the Keyword Only If" owner="keywords">
-<kw name="Set Variable" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.279881" level="INFO">${random_number} = 3</msg>
-<var>${random_number}</var>
-<arg>3</arg>
-<doc>Returns the given values which can then be assigned to a variables.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.279784" elapsed="0.000116"/>
-</kw>
-<kw name="Run Keyword If" owner="BuiltIn">
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.280213" level="INFO">Number is less than 5.</msg>
-<arg>Number is less than 5.</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.280158" elapsed="0.000081"/>
-</kw>
-<arg>${random_number} &lt; 5</arg>
-<arg>Log</arg>
-<arg>Number is less than 5.</arg>
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.279991" elapsed="0.000277"/>
-</kw>
-<kw name="Run Keyword If" owner="BuiltIn">
-<arg>${random_number} &gt; 5</arg>
-<arg>Log</arg>
-<arg>Number is more than 5.</arg>
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.280325" elapsed="0.000084"/>
-</kw>
-<kw name="Run Keyword If" owner="BuiltIn">
-<arg>${random_number} == 5</arg>
-<arg>Log</arg>
-<arg>Number is 5.</arg>
-<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.280471" elapsed="0.000074"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.280874" level="INFO">The number is 3.</msg>
-<arg>The number is ${random_number}.</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.280774" elapsed="0.000126"/>
-</kw>
-<status status="PASS" start="2025-05-09T19:57:18.279618" elapsed="0.001324"/>
-</kw>
-<status status="PASS" start="2025-05-09T19:57:18.279329" elapsed="0.002151"/>
-</test>
-<test id="s1-t9" name="1.9 Creting a list" line="32">
-<kw name="Create a List of Elements" owner="keywords">
-<kw name="Create List" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.282495" level="INFO">@{LIST_DOGS} = [ Dachshund | Dalmatian | Yorkshire | Poodle | German Shepherd ]</msg>
-<var>@{LIST_DOGS}</var>
-<arg>Dachshund</arg>
-<arg>Dalmatian</arg>
-<arg>Yorkshire</arg>
-<arg>Poodle</arg>
-<arg>German Shepherd</arg>
-<doc>Returns a list containing given items.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.282395" elapsed="0.000119"/>
-</kw>
-<kw name="Log Many" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.282664" level="INFO">My favorite dogs are: ['Dachshund', 'Dalmatian', 'Yorkshire', 'Poodle', 'German Shepherd']</msg>
-<arg>My favorite dogs are: @{LIST_DOGS}</arg>
-<doc>Logs the given messages as separate entries using the INFO level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.282585" elapsed="0.000106"/>
-</kw>
-<status status="PASS" start="2025-05-09T19:57:18.282235" elapsed="0.000491"/>
-</kw>
-<status status="PASS" start="2025-05-09T19:57:18.281957" elapsed="0.000900"/>
-</test>
-<test id="s1-t10" name="1.10 Printing a specific element from a list" line="35">
-<kw name="Log Element by Its Index" owner="keywords">
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.284702" level="INFO">Dachshund</msg>
-<arg>${LIST_DOGS}[0]</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.284609" elapsed="0.000132"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.284877" level="INFO">Dalmatian</msg>
-<arg>${LIST_DOGS}[1]</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.284806" elapsed="0.000094"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.285023" level="INFO">Yorkshire</msg>
-<arg>${LIST_DOGS}[2]</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.284957" elapsed="0.000094"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.285375" level="INFO">Poodle</msg>
-<arg>${LIST_DOGS}[3]</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.285272" elapsed="0.000136"/>
-</kw>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.285580" level="INFO">German Shepherd</msg>
-<arg>${LIST_DOGS}[4]</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.285481" elapsed="0.000473"/>
-</kw>
-<status status="PASS" start="2025-05-09T19:57:18.284435" elapsed="0.001580"/>
-</kw>
-<kw name="Log Elements with FOR Loop" owner="keywords">
-<for flavor="IN">
-<iter>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.286894" level="INFO">The dog breed now is: Dachshund</msg>
-<arg>The dog breed now is: ${LIST_DOGS}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.286791" elapsed="0.000150"/>
-</kw>
-<var name="${LIST_DOGS}">Dachshund</var>
-<status status="PASS" start="2025-05-09T19:57:18.286715" elapsed="0.000319"/>
-</iter>
-<iter>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.287309" level="INFO">The dog breed now is: Dalmatian</msg>
-<arg>The dog breed now is: ${LIST_DOGS}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.287196" elapsed="0.000150"/>
-</kw>
-<var name="${LIST_DOGS}">Dalmatian</var>
-<status status="PASS" start="2025-05-09T19:57:18.287125" elapsed="0.000251"/>
-</iter>
-<iter>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.287625" level="INFO">The dog breed now is: Yorkshire</msg>
-<arg>The dog breed now is: ${LIST_DOGS}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.287513" elapsed="0.000153"/>
-</kw>
-<var name="${LIST_DOGS}">Yorkshire</var>
-<status status="PASS" start="2025-05-09T19:57:18.287447" elapsed="0.000253"/>
-</iter>
-<iter>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.287950" level="INFO">The dog breed now is: Poodle</msg>
-<arg>The dog breed now is: ${LIST_DOGS}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.287844" elapsed="0.000141"/>
-</kw>
-<var name="${LIST_DOGS}">Poodle</var>
-<status status="PASS" start="2025-05-09T19:57:18.287776" elapsed="0.000240"/>
-</iter>
-<iter>
-<kw name="Log" owner="BuiltIn">
-<msg time="2025-05-09T19:57:18.288259" level="INFO">The dog breed now is: German Shepherd</msg>
-<arg>The dog breed now is: ${LIST_DOGS}</arg>
-<doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.288164" elapsed="0.000130"/>
-</kw>
-<var name="${LIST_DOGS}">German Shepherd</var>
-<status status="PASS" start="2025-05-09T19:57:18.288101" elapsed="0.000224"/>
-</iter>
-<var>${LIST_DOGS}</var>
-<value>@{LIST_DOGS}</value>
-<status status="PASS" start="2025-05-09T19:57:18.286580" elapsed="0.001771"/>
-</for>
-<status status="PASS" start="2025-05-09T19:57:18.286401" elapsed="0.002000"/>
-</kw>
-<status status="PASS" start="2025-05-09T19:57:18.283602" elapsed="0.004943"/>
-</test>
-<doc>This file explores the most used keywords from the Robot Framework BuiltIn Library.</doc>
-<status status="PASS" start="2025-05-09T19:57:18.237719" elapsed="0.054478"/>
+<doc>This file explores the most used keywords from the Robot Framework Requests Library.</doc>
+<status status="PASS" start="2025-05-10T17:16:31.597338" elapsed="2.273839"/>
 </suite>
 <statistics>
 <total>
-<stat pass="10" fail="0" skip="0">All Tests</stat>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat name="1.Tests Builtin" id="s1" pass="10" fail="0" skip="0">1.Tests Builtin</stat>
+<stat name="4.Tests Requests" id="s1" pass="1" fail="0" skip="0">4.Tests Requests</stat>
 </suite>
 </statistics>
 <errors>
