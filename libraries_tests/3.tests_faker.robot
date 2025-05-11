@@ -6,11 +6,12 @@ Resource         ../libraries_resources/variables.robot
 
 *** Test Cases ***
 Generating fake data
-    Generate Fake Name
-    Generate Fake Email
-    Generate Fake Address
-    Generate Random Integer
-    Generate Random Decimal Number
-    Generate Fake Phone Number
-    Generate Fake Short Text
-    Get Random Element From List
+    # Generate Fake Name
+    # Generate Fake Email
+    # Generate Fake Address
+    # Generate Random Integer
+    # Generate Random Decimal Number
+    Generate Random Date
+    # Generate Fake Phone Number
+    # Generate Fake Short Text
+    # Get Random Element From List

@@ -4,6 +4,7 @@ Resource         ../libraries_resources/variables.robot
 Library          Collections
 Library          FakerLibrary
 Library          RequestsLibrary
+Library          String
 
 
 
@@ -132,6 +133,10 @@ Generate Random Decimal Number
     ${random_decimal}=    Random Number    digits=3
     Log    Generated Random Decimal Number: ${random_decimal}
 
+Generate Random Date
+    ${random_date}=    Date    pattern='%Y-%m-%d'
+    Log    Generated Random Date: ${random_date}
+
 Generate Fake Phone Number
     ${fake_phone}=    Phone Number
     Log    Generated Fake Phone Number: ${fake_phone}
@@ -259,3 +264,33 @@ Delete A Dispatch And Confirm If Successful
     ${response}=    DELETE On Session    firedispatch_api    /api/dispatch/6
     Request Should Be Successful    ${response}
     Log    ${response.json()}
+
+
+
+
+
+### --- String Library --- ###
+Strings Should Be Exactly The Same
+    ${text1}=    Set Variable    Hello
+    ${text2}=    Set Variable    Hello
+    Should Be Equal As Strings    ${text1}    ${text2}
+    Log    '${text1}' is exactly equal to '${text2}'
+
+String Should Contain Substring
+    Should Contain    ${LIST_COLORS}    Pink
+    Log    The list contains 'Pink'
+
+Element Is Converted to String
+    ${movies_string}=    Convert To String    ${DIC_MOVIES}
+    Log    Dictionary converted to string: ${movies_string}
+
+String Should Have Specific Prefix and Suffix
+    ${dogs_string}=    Convert To String    ${LIST_DOGS}
+    Should Start With    ${dogs_string}    ['Dachshund',
+    Should End With    ${dogs_string}   Shepherd']
+    Log    The list as string starts and ends correctly: ${dogs_string}
+
+Whole String Is Converted To Lower Case
+    ${original}=    Set Variable    HELLO, WORLD!
+    ${lower}=    Convert To Lower Case    ${original}
+    Log    Original: ${original}, Lowercase: ${lower}
