@@ -2,6 +2,7 @@
 Documentation    This file contains all custom keywords for the tests. Despite its size, this approach was chosen to consolidate all automation actions in one location for better organization.
 Resource         ../resources/variables.robot
 Library          Collections
+Library          FakerLibrary
 Library          RequestsLibrary
 
 
@@ -61,6 +62,8 @@ Log Elements with FOR Loop
 
 
 
+
+
 ### --- Collections Library --- ###
 Print Element by Index
     ${second_color}=    Get From List    ${LIST_COLORS}    1
@@ -105,6 +108,45 @@ Verify If List Has Item
 Verify If Dictionary Has Item
     Dictionary Should Contain Key    ${DIC_MOVIES}    newest
     Dictionary Should Not Contain Value    ${DIC_MOVIES}    Armageddon
+
+
+
+
+
+### --- Faker Library --- ###
+Fake Name
+    ${fake_name}=    Name
+    Log    Generated Fake Name: ${fake_name}
+
+Fake Email
+    ${fake_email}=    Email
+    Log    Generated Fake Email: ${fake_email}
+
+Fake Address
+    ${fake_address}=    Address
+    Log    Generated Fake Address: ${fake_address}
+
+Random Number as Interger
+    ${random_number}=    Random Int    100    999
+    Log    Generated Number: ${random_number}
+
+Random Number not Interger
+    ${random_numberr}=    Random Number    digits=3
+    Log    Another Generated Number: ${random_numberr}
+
+Fake Phone
+    ${fake_phone}=    Phone Number
+    Log    Generated Fake Phone: ${fake_phone}
+
+Fake Text
+    ${fake_text}=    Text    max_nb_chars=20
+    Log    Generated Text: ${fake_text}
+
+Random Element From List
+    ${random_color}=    Random Element    ${LIST_COLORS}
+    Log    Element from colors' list: ${random_color}
+
+
 
 
 

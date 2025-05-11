@@ -1,67 +1,137 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.2.2 (Python 3.13.3 on win32)" generated="2025-05-10T17:16:31.596454" rpa="false" schemaversion="5">
-<suite id="s1" name="4.Tests Requests" source="C:\Projects\RobotReview\tests\4.tests_requests.robot">
-<kw name="Create A Session" owner="keywords" type="SETUP">
-<kw name="Create Session" owner="RequestsLibrary">
-<msg time="2025-05-10T17:16:31.842600" level="INFO">Creating Session using : alias=firedispatch_api, url=http://localhost:5000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
-<arg>firedispatch_api</arg>
-<arg>${BASE_URL}</arg>
-<doc>Create Session: create a HTTP session to a server</doc>
-<status status="PASS" start="2025-05-10T17:16:31.842484" elapsed="0.000245"/>
+<robot generator="Robot 7.2.2 (Python 3.13.3 on win32)" generated="2025-05-10T21:47:11.654307" rpa="false" schemaversion="5">
+<suite id="s1" name="3.Tests Faker" source="C:\Projects\RobotReview\tests\3.tests_faker.robot">
+<test id="s1-t1" name="Generating fake data" line="8">
+<kw name="Fake Name" owner="keywords">
+<kw name="Name" owner="FakerLibrary">
+<msg time="2025-05-10T21:47:12.248842" level="INFO">${fake_name} = Gary Gibson</msg>
+<var>${fake_name}</var>
+<doc>:example: 'John Doe'</doc>
+<status status="PASS" start="2025-05-10T21:47:12.248458" elapsed="0.000417"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-05-10T17:16:31.842871" level="INFO">Session created successfully</msg>
-<arg>Session created successfully</arg>
+<msg time="2025-05-10T21:47:12.249112" level="INFO">Generated Fake Name: Gary Gibson</msg>
+<arg>Generated Fake Name: ${fake_name}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-10T17:16:31.842811" elapsed="0.000087"/>
+<status status="PASS" start="2025-05-10T21:47:12.248981" elapsed="0.000167"/>
 </kw>
-<status status="PASS" start="2025-05-10T17:16:31.842169" elapsed="0.000768"/>
+<status status="PASS" start="2025-05-10T21:47:12.247808" elapsed="0.001391"/>
 </kw>
-<test id="s1-t1" name="3.6 Confirming responses" line="34">
-<kw name="Delete A Dispatch And Confirm If Successful" owner="keywords">
-<kw name="DELETE On Session" owner="RequestsLibrary">
-<msg time="2025-05-10T17:16:33.868956" level="INFO">DELETE Request : url=http://localhost:5000/api/dispatch/5 
- path_url=/api/dispatch/5 
- headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '0'} 
- body=None 
- </msg>
-<msg time="2025-05-10T17:16:33.869060" level="INFO">DELETE Response : url=http://localhost:5000/api/dispatch/5 
- status=200, reason=OK 
- headers={'Server': 'Werkzeug/3.1.3 Python/3.13.3', 'Date': 'Sat, 10 May 2025 20:16:33 GMT', 'Content-Type': 'application/json', 'Content-Length': '38', 'Connection': 'close'} 
- body={
-  "message": "Dispatch 5 deleted"
-}
- 
- </msg>
-<msg time="2025-05-10T17:16:33.869254" level="INFO">${response} = &lt;Response [200]&gt;</msg>
-<var>${response}</var>
-<arg>firedispatch_api</arg>
-<arg>/api/dispatch/5</arg>
-<doc>Sends a DELETE request on a previously created HTTP Session.</doc>
-<status status="PASS" start="2025-05-10T17:16:31.843766" elapsed="2.025512"/>
-</kw>
-<kw name="Request Should Be Successful" owner="RequestsLibrary">
-<arg>${response}</arg>
-<doc>Fails if response status code is a client or server error (4xx, 5xx).</doc>
-<status status="PASS" start="2025-05-10T17:16:33.869387" elapsed="0.000167"/>
+<kw name="Fake Email" owner="keywords">
+<kw name="Email" owner="FakerLibrary">
+<msg time="2025-05-10T21:47:12.249778" level="INFO">${fake_email} = maria43@example.com</msg>
+<var>${fake_email}</var>
+<status status="PASS" start="2025-05-10T21:47:12.249561" elapsed="0.000236"/>
 </kw>
 <kw name="Log" owner="BuiltIn">
-<msg time="2025-05-10T17:16:33.870007" level="INFO">{'message': 'Dispatch 5 deleted'}</msg>
-<arg>${response.json()}</arg>
+<msg time="2025-05-10T21:47:12.249975" level="INFO">Generated Fake Email: maria43@example.com</msg>
+<arg>Generated Fake Email: ${fake_email}</arg>
 <doc>Logs the given message with the given level.</doc>
-<status status="PASS" start="2025-05-10T17:16:33.869620" elapsed="0.000424"/>
+<status status="PASS" start="2025-05-10T21:47:12.249870" elapsed="0.000132"/>
 </kw>
-<status status="PASS" start="2025-05-10T17:16:31.843408" elapsed="2.026687"/>
+<status status="PASS" start="2025-05-10T21:47:12.249405" elapsed="0.000636"/>
 </kw>
-<status status="PASS" start="2025-05-10T17:16:31.842971" elapsed="2.027387"/>
+<kw name="Fake Address" owner="keywords">
+<kw name="Address" owner="FakerLibrary">
+<msg time="2025-05-10T21:47:12.250574" level="INFO">${fake_address} = 14399 Melissa Track Suite 215
+Port Karenfort, AS 89289</msg>
+<var>${fake_address}</var>
+<doc>:example: '791 Crist Parks, Sashabury, IL 86039-9874'</doc>
+<status status="PASS" start="2025-05-10T21:47:12.250337" elapsed="0.000266"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-10T21:47:12.250763" level="INFO">Generated Fake Address: 14399 Melissa Track Suite 215
+Port Karenfort, AS 89289</msg>
+<arg>Generated Fake Address: ${fake_address}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-10T21:47:12.250673" elapsed="0.000118"/>
+</kw>
+<status status="PASS" start="2025-05-10T21:47:12.250212" elapsed="0.000612"/>
+</kw>
+<kw name="Random Number as Interger" owner="keywords">
+<kw name="Random Int" owner="FakerLibrary">
+<msg time="2025-05-10T21:47:12.251276" level="INFO">${random_number} = 929</msg>
+<var>${random_number}</var>
+<arg>100</arg>
+<arg>999</arg>
+<doc>Generate a random integer between two integers ``min`` and ``max`` inclusive
+while observing the provided ``step`` value.</doc>
+<status status="PASS" start="2025-05-10T21:47:12.251118" elapsed="0.000175"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-10T21:47:12.251444" level="INFO">Generated Number: 929</msg>
+<arg>Generated Number: ${random_number}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-10T21:47:12.251359" elapsed="0.000110"/>
+</kw>
+<status status="PASS" start="2025-05-10T21:47:12.250986" elapsed="0.000515"/>
+</kw>
+<kw name="Random Number not Interger" owner="keywords">
+<kw name="Random Number" owner="FakerLibrary">
+<msg time="2025-05-10T21:47:12.251902" level="INFO">${random_numberr} = 629</msg>
+<var>${random_numberr}</var>
+<arg>digits=3</arg>
+<doc>Generate a random integer according to the following rules:</doc>
+<status status="PASS" start="2025-05-10T21:47:12.251758" elapsed="0.000160"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-10T21:47:12.252062" level="INFO">Another Generated Number: 629</msg>
+<arg>Another Generated Number: ${random_numberr}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-10T21:47:12.251982" elapsed="0.000106"/>
+</kw>
+<status status="PASS" start="2025-05-10T21:47:12.251631" elapsed="0.000492"/>
+</kw>
+<kw name="Fake Phone" owner="keywords">
+<kw name="Phone Number" owner="FakerLibrary">
+<msg time="2025-05-10T21:47:12.252537" level="INFO">${fake_phone} = +1-591-556-7044x74857</msg>
+<var>${fake_phone}</var>
+<status status="PASS" start="2025-05-10T21:47:12.252435" elapsed="0.000119"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-10T21:47:12.252696" level="INFO">Generated Fake Phone: +1-591-556-7044x74857</msg>
+<arg>Generated Fake Phone: ${fake_phone}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-10T21:47:12.252615" elapsed="0.000106"/>
+</kw>
+<status status="PASS" start="2025-05-10T21:47:12.252273" elapsed="0.000478"/>
+</kw>
+<kw name="Fake Text" owner="keywords">
+<kw name="Text" owner="FakerLibrary">
+<msg time="2025-05-10T21:47:12.254686" level="INFO">${fake_text} = Once side suggest.</msg>
+<var>${fake_text}</var>
+<arg>max_nb_chars=20</arg>
+<doc>Generate a text string.</doc>
+<status status="PASS" start="2025-05-10T21:47:12.254446" elapsed="0.000264"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-10T21:47:12.254889" level="INFO">Generated Text: Once side suggest.</msg>
+<arg>Generated Text: ${fake_text}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-10T21:47:12.254796" elapsed="0.000122"/>
+</kw>
+<status status="PASS" start="2025-05-10T21:47:12.254020" elapsed="0.000936"/>
+</kw>
+<kw name="Random Element From List" owner="keywords">
+<kw name="Random Element" owner="FakerLibrary">
+<msg time="2025-05-10T21:47:12.255951" level="INFO">${random_color} = Red</msg>
+<var>${random_color}</var>
+<arg>${LIST_COLORS}</arg>
+<doc>Generate a randomly sampled object from ``elements``.</doc>
+<status status="PASS" start="2025-05-10T21:47:12.255617" elapsed="0.000356"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2025-05-10T21:47:12.256137" level="INFO">Element from colors' list: Red</msg>
+<arg>Element from colors' list: ${random_color}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2025-05-10T21:47:12.256051" elapsed="0.000114"/>
+</kw>
+<status status="PASS" start="2025-05-10T21:47:12.255132" elapsed="0.001068"/>
+</kw>
+<status status="PASS" start="2025-05-10T21:47:12.247231" elapsed="0.009116"/>
 </test>
-<kw name="Delete All Sessions" owner="RequestsLibrary" type="TEARDOWN">
-<msg time="2025-05-10T17:16:33.871091" level="INFO">Deleting All Sessions</msg>
-<doc>Removes all the session objects</doc>
-<status status="PASS" start="2025-05-10T17:16:33.871013" elapsed="0.000139"/>
-</kw>
-<doc>This file explores the most used keywords from the Robot Framework Requests Library.</doc>
-<status status="PASS" start="2025-05-10T17:16:31.597338" elapsed="2.273839"/>
+<doc>This file explores the most used keywords from the Robot Framework Faker Library.</doc>
+<status status="PASS" start="2025-05-10T21:47:11.655303" elapsed="0.602289"/>
 </suite>
 <statistics>
 <total>
@@ -70,7 +140,7 @@
 <tag>
 </tag>
 <suite>
-<stat name="4.Tests Requests" id="s1" pass="1" fail="0" skip="0">4.Tests Requests</stat>
+<stat name="3.Tests Faker" id="s1" pass="1" fail="0" skip="0">3.Tests Faker</stat>
 </suite>
 </statistics>
 <errors>
