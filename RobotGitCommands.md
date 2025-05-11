@@ -23,6 +23,7 @@ robot libraries_tests
 ```
 **Description**: Runs all `.robot` files in the `libraries_tests` folder.
 
+
 ---
 
 ### 🧪 Run a Specific Test Case
@@ -30,6 +31,7 @@ robot libraries_tests
 robot -t "1.3 Comparing Conditions" libraries_tests/1.tests_builtin.robot
 ```
 **Description**: Executes only the test case named `"1.3 Comparing Conditions"` from the file.
+
 
 ---
 
@@ -39,6 +41,7 @@ robot -d reports libraries_tests/1.tests_builtin.robot
 ```
 **Description**: Saves output files (logs, reports) into the `reports` directory.
 
+
 ---
 
 ### 🏷️ Run by Suite Name
@@ -46,6 +49,7 @@ robot -d reports libraries_tests/1.tests_builtin.robot
 robot --suite "1.tests Builtin" libraries_tests
 ```
 **Description**: Runs tests only from suites with the specified name (derived from file/folder names).
+
 
 ---
 
@@ -58,6 +62,7 @@ robot --exclude wip libraries_tests
 - `--include`: Runs only tests tagged with the given tag (e.g., `smoke`).  
 - `--exclude`: Skips tests tagged with the given tag (e.g., `wip`).
 
+
 ---
 
 ### ❓ View All Available Options
@@ -66,11 +71,14 @@ robot --help
 ```
 **Description**: Displays all available command-line options for controlling test execution.
 
+
+
 ---
 
 ## 🛠️ Git Commands
 
 Here are some essential Git commands you'll frequently use.
+
 
 ### 🌐 Clone a Repository
 ```bash
@@ -85,6 +93,7 @@ remote: Enumerating objects: 10, done.
 Unpacking objects: 100% (10/10), done.
 ```
 
+
 ---
 
 ### 🔄 Switch Branches
@@ -95,6 +104,7 @@ git checkout feature-api-x
 ```
 Switched to branch 'feature-api-x'
 ```
+
 
 ---
 
@@ -112,6 +122,7 @@ Fast-forward
  ...
 ```
 
+
 ---
 
 ### 📤 Stage All Changes
@@ -119,6 +130,7 @@ Fast-forward
 git add .
 ```
 **Note:** No output is shown if successful.
+
 
 ---
 
@@ -131,6 +143,7 @@ git commit -m "Add new tests for user creation endpoint"
 [feature-api-x 123abcd] Add new tests for user creation endpoint
  1 file changed, 25 insertions(+)
 ```
+
 
 ---
 
@@ -147,6 +160,7 @@ To github.com:user/api-tests.git
    456efgh..123abcd  feature-api-x -> feature-api-x
 ```
 
+
 ---
 
 ## 📘 Next Steps
@@ -156,6 +170,3 @@ For further reading:
 - [Git Documentation](https://git-scm.com/book/en/v2)
 
 Happy testing!
-```
-
----
