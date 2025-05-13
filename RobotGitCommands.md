@@ -169,4 +169,44 @@ For further reading:
 - [Robot Framework User Guide](https://robotframework.org/robotframework/)
 - [Git Documentation](https://git-scm.com/book/en/v2)
 
-Happy testing!
+
+---
+
+
+## ✅ Bonus - Common ${response} Attributes (Response Objects)
+
+
+| Attribute                 | Description                                                | Example Use                                                                 |
+| ------------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `${response.status_code}` | The HTTP status code returned by the server                | `Should Be Equal As Integers    ${response.status_code}    200`             |
+| `${response.body}`        | Full response body (typically a string of JSON or text)    | `Should Contain    ${response.body}    "inmateId"`                          |
+| `${response.json()}`      | Parses the body as a JSON dictionary (requires **evaluating**) | `Set Test Variable    ${json}    Evaluate    ${response.json()}    json`    |
+| `${response.headers}`     | Dictionary of response headers                             | `Should Contain    ${response.headers['Content-Type']}    application/json` |
+| `${response.elapsed}`     | Time taken to get the response (timing object)             | `Log    Response time: ${response.elapsed}`                                 |
+| `${response.content}`     | Raw content (binary or encoded)                            | For files or binary payloads                                                |
+| `${response.text}`        | Response body as a string (alias to `.body`)               | Often used for logs/debugging                                               |
+
+
+---
+
+
+### **💡 Tip:** To parse JSON once and reuse:
+
+```robot
+${data}=    Evaluate    ${response.json()}    json
+```
+
+
+---
+
+## ✅ **Most Used in Practice**
+
+For **day-to-day API testing**, these are the top 3 you'll use:
+
+1. `status_code` → for validating response success or error
+2. `json()` → for checking specific fields (requires `Evaluate`)
+3. `headers` → for content type, authentication, etc.
+
+
+
+---
