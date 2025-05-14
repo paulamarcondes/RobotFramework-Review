@@ -1,4 +1,4 @@
-# Robot Framework & Git Quick Reference Guide
+# Useful Quick Reference Guide
 
 This file is a quick reference for most used **Robot Framework** and **Git** commands. 
 
@@ -199,13 +199,30 @@ ${data}=    Evaluate    ${response.json()}    json
 
 ---
 
-## ✅ **Most Used in Practice**
+### ✅ **Most Used in Practice**
 
 For **day-to-day API testing**, these are the top 3 you'll use:
 
 1. `status_code` → for validating response success or error
 2. `json()` → for checking specific fields (requires `Evaluate`)
 3. `headers` → for content type, authentication, etc.
+
+
+
+---
+
+
+## ✅ Response Validation Methods in Robot Framework
+
+Different approaches to validate response body content in Robot Framework, including explanations and examples:
+
+
+| Method                  | Description                        | Example |
+|-------------------------|------------------------------------|---------|
+| **Evaluate**            | Pythonic way, flexible             | `${data}=    Evaluate    ${response.json()}    json`  <br>`Should Be Equal    ${data["status"]}    "booked"` |
+| **Convert To Dictionary** | Built-in keyword, cleaner than `Evaluate` | `${data}=    Convert To Dictionary    ${response.json()}`  <br>`Should Be Equal    ${data["status"]}    "booked"` |
+| **Get From Dictionary** | Cleaner way to access nested keys  | `${data}=    Convert To Dictionary    ${response.json()}`  <br>`${status}=    Get From Dictionary    ${data}    status`  <br>`Should Be Equal    ${status}    booked` |
+| **Should Contain**      | Simple check for small responses or strings | `Should Contain    ${response.text}    "booked"` |
 
 
 
