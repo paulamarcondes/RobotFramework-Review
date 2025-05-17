@@ -62,6 +62,24 @@ Log Elements With FOR Loop
         Log    The dog breed now is: ${dog}
     END
 
+The Value Must Be Empty
+    ${empty_text}=    Set Variable    
+    Should Be Empty    ${empty_text}
+    Log    This value is empty as expected.
+
+Both Values Must Be Different
+    Should Not Be Equal    Red    Blue
+    Log    'Red' and 'Blue' are not equal.
+
+Run Keyword If Condition Is False
+    ${status}=    Set Variable    False
+    Run Keyword Unless    ${status}    Log    The condition is False, so this log appears.
+
+Force A Failure
+    Fail    This test failed on purpose just to show how Fail works
+
+
+
 
 
 
@@ -108,6 +126,18 @@ Verify If Dictionary Has Item
     Dictionary Should Contain Key    ${DIC_MOVIES}    newest
     Dictionary Should Not Contain Value    ${DIC_MOVIES}    Armageddon
 
+Copy A List And Compare
+    ${copied_list}=    Copy List    ${LIST_DOGS}
+    Lists Should Be Equal    ${LIST_DOGS}    ${copied_list}
+    Log    Both lists are the same.
+
+Check Dictionary Length
+    ${length}=    Get Length    ${DIC_CITIES}
+    Should Be Equal As Integers    ${length}    3
+    Log    The dictionary has exactly ${length} items.
+
+
+
 
 
 
@@ -153,6 +183,8 @@ Get Random Element From List
 
 
 
+
+
 ### --- Requests Library --- ###
 Create Session For Dispatch API
     Create Session    firedispatch_api    ${BASE_URL}
@@ -171,7 +203,8 @@ Generate Random Dispatch Body
     ...    type=${type}
     ...    priority=${priority}
 
-    Set Global Variable    &{dispatch}
+    Set Suite Variable    &{dispatch}
+    Log    Generated random dispatch body: 
     Log Dictionary    ${dispatch}
 
 Get All Dispatches
@@ -265,6 +298,19 @@ Delete A Dispatch And Confirm If Successful
     Request Should Be Successful    ${response}
     Log    ${response.json()}
 
+Validate Priority From Last Response
+    ${body}=    Convert To Dictionary    ${response.json()}
+    ${priority}=    Get From Dictionary    ${body}    priority
+    Should Be Equal    ${priority}    High
+
+Validate Required Fields In Response Body
+    ${body}=    Convert To Dictionary    ${response.json()}
+    Dictionary Should Contain Key    ${body}    priority
+    Dictionary Should Contain Key    ${body}    incident_id
+    Dictionary Should Contain Key    ${body}    location
+
+
+
 
 
 
@@ -294,3 +340,8 @@ Whole String Is Converted To Lower Case
     ${original}=    Set Variable    HELLO, WORLD!
     ${lower}=    Convert To Lower Case    ${original}
     Log    Original: ${original}, Lowercase: ${lower}
+
+Whole String Is Converted To Upper Case
+    ${text}=    Set Variable    hello world
+    ${upper}=   Convert To Upper Case    ${text}
+    Log         Original: ${text}, Upper: ${upper}

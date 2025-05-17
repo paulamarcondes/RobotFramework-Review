@@ -19,3 +19,6 @@ Resource         ../libraries_resources/keywords.robot
 
 5.5 Converting String To Lower Case
     Whole String Is Converted To Lower Case
+
+5.6 Converting String To Upper Case
+    Whole String Is Converted To Upper Case

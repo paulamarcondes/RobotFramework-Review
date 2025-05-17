@@ -14,7 +14,7 @@ Resource         ../libraries_resources/keywords.robot
     Print Keys
     Print Values
     Print All Items
-    Print All Items With FOR Loop
+    Print All Items with FOR Loop
 
 2.3 Getting Values From Dictionary
     Get Values Using Keys
@@ -22,3 +22,9 @@ Resource         ../libraries_resources/keywords.robot
 2.4 Verifying Contained Items
     Verify If List Has Item
     Verify If Dictionary Has Item
+
+2.5 Copying And Comparing Lists
+    Copy A List And Compare
+
+2.6 Checking Dictionary Size
+    Check Dictionary Length
