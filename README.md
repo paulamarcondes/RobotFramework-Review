@@ -54,9 +54,5 @@ If you have questions or feedback, feel free to reach out:
 - Email: paulamar.rp@gmail.com
 - LinkedIn: [My Profile](https://www.linkedin.com/in/paulamarcondes/)
 
----
-
-Happy testing and coding!
-```
 
 ---
