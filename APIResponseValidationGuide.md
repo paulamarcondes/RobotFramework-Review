@@ -44,7 +44,7 @@ Different approaches to validate response body content in Robot Framework, order
 |-------------------------|----------------------------------------------|---------|
 | **Should Contain**      | Simple string-based check for keywords or values | `Should Contain    ${response.text}    "booked"` |
 | **Convert To Dictionary** | Built-in keyword, clean and beginner-friendly | `${data}=    Convert To Dictionary    ${response.json()}`<br>`Should Be Equal    ${data["status"]}    "booked"` |
-| **Get From Dictionary** | Clean way to access nested keys with better readability | `${data}=    Convert To Dictionary    ${response.json()}`<br>${status}=    Get From Dictionary    ${data}    status<br>`Should Be Equal    ${status}    booked` |
+| **Get From Dictionary** | Clean way to access nested keys with better readability | `${data}=    Convert To Dictionary    ${response.json()}`<br>`${status}=    Get From Dictionary    ${data}    status`<br>`Should Be Equal    ${status}    booked` |
 | **Evaluate**            | Pythonic and flexible, better for complex logic | `${data}=    Evaluate    ${response.json()}    json`<br>`Should Be Equal    ${data["status"]}    "booked"` |
 
 ---
