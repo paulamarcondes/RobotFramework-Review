@@ -170,7 +170,7 @@ For further reading:
 ---
 
 
-# ✅ Bonus - Common `${response}` Attributes in Robot Framework (`RequestsLibrary`)
+## ✅ Bonus - Common `${response}` Attributes in Robot Framework (`RequestsLibrary`)
 
 This table outlines the most frequently used attributes when working with response objects from HTTP requests in Robot Framework using the `RequestsLibrary`.
 
@@ -224,9 +224,9 @@ Different approaches to validate response body content in Robot Framework, order
 
 ---
 
-### ✅ Example
+## ✅ Example:
 
-Suppose the response body you get from an API is this string:
+Suppose the response body you get from an API is this **JSON string**:
 
 ```json
 {
@@ -236,25 +236,23 @@ Suppose the response body you get from an API is this string:
 }
 ```
 
-Without parsing, this is just a text string:
+Without parsing, this is just a **plain text string**:
 
-```json
+```text
 "{ \"id\": 123, \"name\": \"Maria\", \"status\": \"booked\" }"
 ```
 
-When you call `${response.json()}` inside `Evaluate`:
+---
+
+When you call `${response.json()}`, it returns a **Python dictionary** (under the hood).
+
+But when you call `${response.json()}` inside `Evaluate` in Robot Framework:
 
 ```robot
 ${json}=    Evaluate    ${response.json()}    json
 ```
 
-It converts that text into a Python dictionary like this:
-
-```python
-{"id": 123, "name": "Maria", "status": "booked"}
-```
-
-Now, you can easily access individual values like:
+It becomes a **Robot Framework dictionary**, which you can interact with using RF syntax:
 
 ```robot
 Should Be Equal    ${json["status"]}    booked
