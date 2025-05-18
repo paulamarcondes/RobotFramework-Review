@@ -1,15 +1,12 @@
 # Useful Quick Reference Guide
 
-This file is a quick reference for most used **Robot Framework** and **Git** commands. 
-
-
 ---
 
-## 🤖 Robot Framework Commands
+# 🤖 Robot Framework Commands
 
 Assuming VS Code terminal is open at the root level, here are the most important Robot Framework CLI commands:
 
-### 🔁 Run All Tests in a Specific File
+## 🔁 Run All Tests in a Specific File
 ```bash
 robot libraries_tests/1.tests_builtin.robot
 ```
@@ -17,7 +14,7 @@ robot libraries_tests/1.tests_builtin.robot
 
 ---
 
-### 📂 Run All Tests in a Folder
+## 📂 Run All Tests in a Folder
 ```bash
 robot libraries_tests
 ```
@@ -26,7 +23,7 @@ robot libraries_tests
 
 ---
 
-### 🧪 Run a Specific Test Case
+## 🧪 Run a Specific Test Case
 ```bash
 robot -t "1.3 Comparing Conditions" libraries_tests/1.tests_builtin.robot
 ```
@@ -35,7 +32,7 @@ robot -t "1.3 Comparing Conditions" libraries_tests/1.tests_builtin.robot
 
 ---
 
-### 📁 Set a Custom Output Directory
+## 📁 Set a Custom Output Directory
 ```bash
 robot -d reports libraries_tests/1.tests_builtin.robot
 ```
@@ -44,7 +41,7 @@ robot -d reports libraries_tests/1.tests_builtin.robot
 
 ---
 
-### 🏷️ Run by Suite Name
+## 🏷️ Run by Suite Name
 ```bash
 robot --suite "1.tests Builtin" libraries_tests
 ```
@@ -53,7 +50,7 @@ robot --suite "1.tests Builtin" libraries_tests
 
 ---
 
-### 🎯 Run by Tag (Include or Exclude)
+## 🎯 Run by Tag (Include or Exclude)
 ```bash
 robot --include smoke libraries_tests
 robot --exclude wip libraries_tests
@@ -65,7 +62,7 @@ robot --exclude wip libraries_tests
 
 ---
 
-### ❓ View All Available Options
+## ❓ View All Available Options
 ```bash
 robot --help
 ```
@@ -75,12 +72,12 @@ robot --help
 
 ---
 
-## 🛠️ Git Commands
+# 🛠️ Git Commands
 
 Here are some essential Git commands you'll frequently use.
 
 
-### 🌐 Clone a Repository
+## 🌐 Clone a Repository
 ```bash
 git clone https://github.com/user/api-tests.git
 cd api-tests
@@ -96,7 +93,7 @@ Unpacking objects: 100% (10/10), done.
 
 ---
 
-### 🔄 Switch Branches
+## 🔄 Switch Branches
 ```bash
 git checkout feature-api-x
 ```
@@ -108,7 +105,7 @@ Switched to branch 'feature-api-x'
 
 ---
 
-### 📥 Pull Latest Changes
+## 📥 Pull Latest Changes
 ```bash
 git pull origin main
 ```
@@ -125,7 +122,7 @@ Fast-forward
 
 ---
 
-### 📤 Stage All Changes
+## 📤 Stage All Changes
 ```bash
 git add .
 ```
@@ -134,7 +131,7 @@ git add .
 
 ---
 
-### 💾 Commit Changes Locally
+## 💾 Commit Changes Locally
 ```bash
 git commit -m "Add new tests for user creation endpoint"
 ```
@@ -147,7 +144,7 @@ git commit -m "Add new tests for user creation endpoint"
 
 ---
 
-### ☁️ Push Changes to Remote Repository
+## ☁️ Push Changes to Remote Repository
 ```bash
 git push origin
 ```
@@ -163,7 +160,7 @@ To github.com:user/api-tests.git
 
 ---
 
-## 📘 Next Steps
+### 📘 Next Steps
 
 For further reading:
 - [Robot Framework User Guide](https://robotframework.org/robotframework/)
@@ -173,33 +170,23 @@ For further reading:
 ---
 
 
-## ✅ Bonus - Common ${response} Attributes (Response Objects)
+# ✅ Bonus - Common `${response}` Attributes in Robot Framework (`RequestsLibrary`)
 
+This table outlines the most frequently used attributes when working with response objects from HTTP requests in Robot Framework using the `RequestsLibrary`.
 
-| Attribute                 | Description                                                | Example Use                                                                 |
-| ------------------------- | ---------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `${response.status_code}` | The HTTP status code returned by the server                | `Should Be Equal As Integers    ${response.status_code}    200`             |
-| `${response.body}`        | Full response body (typically a string of JSON or text)    | `Should Contain    ${response.body}    "inmateId"`                          |
-| `${response.json()}`      | Parses the body as a JSON dictionary (requires **evaluating**) | `Set Test Variable    ${json}    Evaluate    ${response.json()}    json`    |
-| `${response.headers}`     | Dictionary of response headers                             | `Should Contain    ${response.headers['Content-Type']}    application/json` |
-| `${response.elapsed}`     | Time taken to get the response (timing object)             | `Log    Response time: ${response.elapsed}`                                 |
-| `${response.content}`     | Raw content (binary or encoded)                            | For files or binary payloads                                                |
-| `${response.text}`        | Response body as a string (alias to `.body`)               | Often used for logs/debugging                                               |
-
-
----
-
-
-### **💡 Tip:** To parse JSON once and reuse:
-
-```robot
-${data}=    Evaluate    ${response.json()}    json
-```
+| Attribute                 | Description                                                   | Example Use                                                                 |
+|--------------------------|---------------------------------------------------------------|------------------------------------------------------------------------------|
+| `${response.status_code}` | The HTTP status code returned by the server                   | `Should Be Equal As Integers    ${response.status_code}    200`             |
+| `${response.text}`        | Response body as a string (usually JSON or plain text)        | `Should Contain    ${response.text}    "inmateId"`                           |
+| `${response.json()}`      | Parses* the body as a JSON object (requires \`Evaluate\`)       | `${json}=    Evaluate    ${response.json()}    json`                         |
+| `${response.headers}`     | Dictionary of response headers                                | `Should Contain    ${response.headers['Content-Type']}    application/json` |
+| `${response.content}`     | Raw response content in bytes                                 | Useful for binary data or file downloads                                    |
 
 
 ---
 
-### ✅ **Most Used in Practice**
+
+## ✅ **Most Used in Practice**
 
 For **day-to-day API testing**, these are the top 3 you'll use:
 
@@ -208,22 +195,69 @@ For **day-to-day API testing**, these are the top 3 you'll use:
 3. `headers` → for content type, authentication, etc.
 
 
+---
+
+
+### **💡 Tip:** To parse JSON once and reuse:
+
+**Parsing** = interpreting structured text (like JSON) and turning it into a structured object (like a dictionary).
+
+```robot
+${data}=    Evaluate    ${response.json()}    json
+```
+
 
 ---
 
 
 ## ✅ Response Validation Methods in Robot Framework
 
-Different approaches to validate response body content in Robot Framework, including explanations and examples:
+Different approaches to validate response body content in Robot Framework, ordered by readability and beginner-friendliness:
+
+| Method                  | Description                                  | Example |
+|-------------------------|----------------------------------------------|---------|
+| **Should Contain**      | Simple string-based check for keywords or values | `Should Contain    ${response.text}    "booked"` |
+| **Convert To Dictionary** | Built-in keyword, clean and beginner-friendly | `${data}=    Convert To Dictionary    ${response.json()}`  <br>`Should Be Equal    ${data["status"]}    "booked"` |
+| **Get From Dictionary** | Clean way to access nested keys with better readability | `${data}=    Convert To Dictionary    ${response.json()}`  <br>`${status}=    Get From Dictionary    ${data}    status`  <br>`Should Be Equal    ${status}    booked` |
+| **Evaluate**            | Pythonic and flexible, better for complex logic | `${data}=    Evaluate    ${response.json()}    json`  <br>`Should Be Equal    ${data["status"]}    "booked"` |
 
 
-| Method                  | Description                        | Example |
-|-------------------------|------------------------------------|---------|
-| **Evaluate**            | Pythonic way, flexible             | `${data}=    Evaluate    ${response.json()}    json`  <br>`Should Be Equal    ${data["status"]}    "booked"` |
-| **Convert To Dictionary** | Built-in keyword, cleaner than `Evaluate` | `${data}=    Convert To Dictionary    ${response.json()}`  <br>`Should Be Equal    ${data["status"]}    "booked"` |
-| **Get From Dictionary** | Cleaner way to access nested keys  | `${data}=    Convert To Dictionary    ${response.json()}`  <br>`${status}=    Get From Dictionary    ${data}    status`  <br>`Should Be Equal    ${status}    booked` |
-| **Should Contain**      | Simple check for small responses or strings | `Should Contain    ${response.text}    "booked"` |
+---
 
+### ✅ Example
 
+Suppose the response body you get from an API is this string:
+
+```json
+{
+  "id": 123,
+  "name": "Maria",
+  "status": "booked"
+}
+```
+
+Without parsing, this is just a text string:
+
+```json
+"{ \"id\": 123, \"name\": \"Maria\", \"status\": \"booked\" }"
+```
+
+When you call `${response.json()}` inside `Evaluate`:
+
+```robot
+${json}=    Evaluate    ${response.json()}    json
+```
+
+It converts that text into a Python dictionary like this:
+
+```python
+{"id": 123, "name": "Maria", "status": "booked"}
+```
+
+Now, you can easily access individual values like:
+
+```robot
+Should Be Equal    ${json["status"]}    booked
+```
 
 ---
