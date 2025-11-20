@@ -3,7 +3,7 @@
 This repository reviews and demonstrates key **Robot Framework** libraries, keywords, and best practices. 
 
 
-## 🛠️ Repository Structure
+## Repository Structure
 
 ```
 ROBOTREVIEW/
@@ -27,14 +27,14 @@ ROBOTREVIEW/
 ```
 
 
-## 🌟 Key Features
+## Key Features
 
 - **Built-in Keywords**: Demonstrates usage of Robot Framework's built-in keywords.
 - **External Libraries**: Integrates popular libraries like `Collections`, `Faker`, and `Requests`.
 - **Custom Keywords**: Provides examples of creating and using custom keyword libraries.
 
 
-## 🤝 Contributing
+## Contributing
 
 Feel free to contribute by:
 - Adding new test cases for other libraries.
@@ -42,13 +42,13 @@ Feel free to contribute by:
 - Suggesting enhancements or corrections.
 
 
-## 📚 References
+## References
 
 - [Robot Framework Documentation](https://robotframework.org/robotframework/)
 - [Robot Framework GitHub](https://github.com/robotframework/robotframework)
 
 
-## 👨‍💻 Contact
+## Contact
 
 If you have questions or feedback, feel free to reach out:
 - Email: paulamar.rp@gmail.com
